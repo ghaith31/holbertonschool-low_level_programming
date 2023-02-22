@@ -1,0 +1,4 @@
+#!/bin/bash
+CFILE="main.c"
+ASFILE="${CFILE%.*}.s"
+gcc -S $CFILE -o $ASFILE
