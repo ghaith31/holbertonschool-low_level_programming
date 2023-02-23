@@ -11,7 +11,7 @@
 
 int main(void)
 {
-	char NUM;
+	int NUM;
 
 	for (NUM = '0'; NUM <= '9'; NUM++)
 		putchar(NUM);
