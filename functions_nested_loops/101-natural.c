@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "main.h"
 /**
  * main - main function
  *
@@ -18,7 +17,7 @@ int main(void)
 		}
 
 	}
-	_putchar("%d\n", b);
+	printf("%d\n", b);
 	return (0);
 }
 
