@@ -1,46 +1,47 @@
 #include "main.h"
-#include "2-strlen.c"
 
 /**
- * _atoi - converts string to integer
- * @s: string to convert
- *
- * Return: returns integer value
- */
+* _atoi - convert a string to an integer
+* @s: pointer
+* Return: string converted to int
+*/
+
 int _atoi(char *s)
 {
-	int i;
-	int np = 0;
-	int c;
-	int d = 1;
-	int num = 0;
+	int i = 0, j, din;
+	int sign = 1, bdet = 0, wfet = 0, bdina = 0, out = 0;
 
-	for (i = 0; i < _strlen(s); i++)
+	while (s[i] != '\0')
 	{
-		if (!(s[i] >= '0' && s[i] <= '9') && c > 0)
-			break;
-		if (s[i] == '-')
-			np--;
-		if (s[i] == '+')
-			np++;
-		if (s[i] >= '0' && s[i] <= '9')
+		if (bdina != 0)
 		{
-			c++;
+			if ((s[i] - '0' < 0) || (s[i] - '0' > 9))
+			{
+				wfet = i - 1;
+				break;
+			}
+		}
+		else
+		{
+			if (s[i] == '-')
+				sign *= -1;
+			if ((s[i] - '0' >= 0) && (s[i] - '0' <= 9))
+			{
+				bdina = 1;
+				bdet = i;
+			}
+		}
+		i++;
+	}
+	wfet = (wfet == 0) ? i - 1 : wfet;
+	if (bdina)
+	{
+		for (i = bdet; i <= wfet; i++)
+		{
+			din = 1;
+			for (j = 0; j < (wfet - i); j++)
+				din *= 10;
+			out += din * (s[i] - '0');
 		}
 	}
-	while (c > 0)
-	{
-		num += ((s[i - 1] - '0') * d);
-		i--;
-		c--;
-		d *= 10;
-	}
-	if (np >= 0)
-	{
-		num *= 1;
-	} else
-	{
-		num *= -1;
-	}
-	return (num);
-}
+	return (out *= sign);
