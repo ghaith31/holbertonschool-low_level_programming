@@ -5,7 +5,7 @@
  * _calloc - calloc function
  * @nmemb: number of elements
  * @size: size of bytes
- * Return: pointer or void
+ * Return: 0 or void
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
@@ -20,5 +20,5 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	for (i = 0; i < nmemb * size; i++)
 		t[i] = 0;
 
-	return (t);
+	return (0);
 }
