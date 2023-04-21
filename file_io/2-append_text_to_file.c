@@ -1,26 +1,33 @@
 #include "main.h"
 #include <stdio.h>
+
 /**
- * append_text_to_file - appends text to a file
- * @filename: file to append to, if NULL, return -1
- * @text_content: content to append, if NULL, do not append
- * Return: 1 on success, -1 on failure
+ * append_text_to_file - appends to file
+ * @filename: name of file
+ * @text_content: content of text
+ * Return: int value
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-  int fnNewFile;
-  int size;
-  int w;
+	int fd, len = 0;
+	long int wrote;
 
-  if (filename == NULL)
-    return (-1);
-  fnNewFile = open(filename, O_WRONLY | O_APPEND);
-  if (fnNewFile == -1)
-    return (-1);
-  if (text_content == NULL)
-    return (1);
-  for (size = 0; text_content[size]; size++)
-    ;
-  w = write(fnNewFile, text_content, size);
-  close(fnNewFile);
-  return (w == -1 ? -1 : 1);
+	if (filename == NULL)
+		return (-1);
+	fd = open(filename, O_RDWR | O_APPEND);
+	if (fd == -1)
+		return (-1);
+	if (text_content != NULL)
+	{
+		while (text_content[len])
+			len++;
+
+		wrote = write(fd, text_content, len);
+		if (wrote == -1)
+			return (-1);
+	}
+	if (close(fd) == -1)
+		return (-1);
+	return (1);
+}
+
